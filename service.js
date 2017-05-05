@@ -2,8 +2,8 @@ var seneca = require('seneca')();
 
 seneca.use('basic')
       .use('entity')
-      .use('mongo-store', {
-      	uri: 'mongodb://127.0.0.1:27017'
+      .use('redis-store', {
+      	uri: 'redis://127.0.0.1:6379'
       });
 
 seneca.add({
@@ -18,7 +18,6 @@ seneca.add({
         "role": "product",
         "cmd": "create"
        }, (args, done) => {
-         console.log(args);
          var product = seneca.make$("Product");
          product.name = args.name;
          product.price = args.price;
